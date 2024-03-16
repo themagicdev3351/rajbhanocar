@@ -94,6 +94,7 @@ const ProductScreen = () => {
                     <button type="button" onClick={addToCartHandler}>
                       Add To Cart
                     </button>
+                    <br />
                     <button type="button" onClick={() => delProductHandler(product._id)}>
                       Del product
                     </button>
