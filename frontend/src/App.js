@@ -21,7 +21,7 @@ import Profile from './screens/Profile';
 import AddCar from './screens/AddCar';
 
 const PrivateWrapper = ({ auth }) => {
-  return auth ? <Outlet /> : <Navigate to="/login" />;
+  return auth ? <Outlet /> : <Navigate to="/" />;
 };
 
 

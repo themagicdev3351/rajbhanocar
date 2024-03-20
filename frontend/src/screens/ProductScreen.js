@@ -37,9 +37,9 @@ const ProductScreen = () => {
 
   const delProductHandler = async (productId) => {
     try {
-      await axios.delete(`http://localhost:8080/api/products/del/${productId}`);
-      navigate('/');
-      console.log('Product deleted successfully');
+      const data = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}api/products/del/${productId}`);
+      navigate('/'); 
+      return data
       // Optionally, update local state or trigger any necessary actions after deletion
     } catch (error) {
       console.error('Error:', error);

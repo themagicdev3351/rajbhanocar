@@ -7,7 +7,7 @@ const AddCar = () => {
 
     const [formData, setFormData] = useState({
         name: '',
-        imageUrl: '',
+        image: null,
         description: '',
         price: '',
         countInStock: ''
@@ -20,12 +20,32 @@ const AddCar = () => {
         });
     };
 
+    const handleImageChange = (e) => {
+        setFormData({
+            ...formData,
+            image: e.target.files[0]
+        });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:8080/api/products/add', formData);
-            console.log('Car added successfully');
-            // Clear form data
+
+            const formDataToSend = new FormData();
+            formDataToSend.append('name', formData.name);
+            formDataToSend.append('description', formData.description);
+            formDataToSend.append('price', formData.price);
+            formDataToSend.append('countInStock', formData.countInStock);
+            formDataToSend.append('imageUrl', formData.image);
+
+            await axios.post('http://localhost:8080/api/products/add', formDataToSend, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            console.log('Product added successfully');
+
+
             setFormData({
                 name: '',
                 imageUrl: '',
@@ -50,7 +70,7 @@ const AddCar = () => {
                 </div>
                 <div>
                     <label>Image URL:</label>
-                    <input type="text" name="imageUrl" value={formData.imageUrl} onChange={handleChange} />
+                    <input type="file" name="image" onChange={handleImageChange} />
                 </div>
                 <div>
                     <label>Description:</label>
