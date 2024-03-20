@@ -12,8 +12,7 @@ function Index() {
 
   const _handleSubmit = useCallback(async () => {
     if (fullName?.length > 2 && email?.length > 2 && password?.length > 2) {
-      setLoading(true)
-      console.log('statusCode, data')
+      setLoading(true) 
 
       const { statusCode, data } = await Api.postRequest('/api/user/signup', {
         email,

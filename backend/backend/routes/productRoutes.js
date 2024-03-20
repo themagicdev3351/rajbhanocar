@@ -4,11 +4,12 @@ const {
   getProducts,
   getProductById,
   addProducts,
-  delProducts
+  delProducts,
+  upload
 } = require("../controller/productControllers");
 
 router.get("/", getProducts);
-router.post("/add", addProducts);
+router.post("/add", upload.single('imageUrl'), addProducts);
 router.delete("/del/:id", delProducts);
 router.get("/:id", getProductById);
 
