@@ -8,17 +8,17 @@ import SideDrawer from './components/SideDrawer'
 import Backdrop from './components/Backdrop'
 
 // Screens
-import HomeScreen from './screens/HomeScreen'
-import ProductScreen from './screens/ProductScreen'
-import CartScreen from './screens/CartScreen'
+import HomeScreen from './screens/Home/HomeScreen'
+import ProductScreen from './screens/Product/ProductScreen'
+import CartScreen from './screens/Cart/CartScreen'
 import SignUp from './screens/SignUp'
 import SignIn from './screens/SignIn'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { fetchCart } from './redux/actions/cartActions'
 import { setUserDeatils } from './redux/actions/userAction'
 import Service from './screens/Service';
-import Profile from './screens/Profile';
-import AddCar from './screens/AddCar';
+import Profile from './screens/Profile/Profile';
+import AddCar from './screens/Cart/AddCar';
 
 const PrivateWrapper = ({ auth }) => {
   return auth ? <Outlet /> : <Navigate to="/" />;
@@ -27,7 +27,8 @@ const PrivateWrapper = ({ auth }) => {
 
 function App() {
   const [sideToggle, setSideToggle] = useState(false)
-  const user = useSelector(state => state.user)
+  // const user = useSelector(state => state.user)
+  const auth = useState(localStorage.getItem('E_COMMERCE_TOKEN'))
   // fetchCart
   const dispatch = useDispatch()
   useEffect(() => {
@@ -42,20 +43,22 @@ function App() {
       <Backdrop show={sideToggle} click={() => setSideToggle(false)} />
 
       <main className="app">
-        <Routes>
+        <div className='container'>
+          <Routes>
 
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} />
+            <Route path="/" element={<HomeScreen />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn />} />
 
-          <Route element={<PrivateWrapper auth={user.userInfo.isLogin} />}>
-            <Route path="/product/:id" element={<ProductScreen />} />
-            <Route path="/cart" element={<CartScreen />} />
-            <Route path="/service" element={<Service />} />
-            <Route path="/addcar" element={<AddCar />} />
-            <Route path="/profile" element={<Profile />} />
-          </Route>
-        </Routes>
+            <Route element={<PrivateWrapper auth={auth} />}>
+              <Route path="/product/:id" element={<ProductScreen />} />
+              <Route path="/cart" element={<CartScreen />} />
+              <Route path="/service" element={<Service />} />
+              <Route path="/addcar" element={<AddCar />} />
+              <Route path="/profile" element={<Profile />} />
+            </Route>
+          </Routes>
+        </div>
       </main>
     </>
   )

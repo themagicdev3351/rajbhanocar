@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios';
 
 // Actions
-import { getProductDetails } from '../redux/actions/productActions'
-import { addToCart } from '../redux/actions/cartActions'
+import { getProductDetails } from '../../redux/actions/productActions'
+import { addToCart } from '../../redux/actions/cartActions'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
 const ProductScreen = () => {
@@ -38,7 +38,7 @@ const ProductScreen = () => {
   const delProductHandler = async (productId) => {
     try {
       const data = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}api/products/del/${productId}`);
-      navigate('/'); 
+      navigate('/');
       return data
       // Optionally, update local state or trigger any necessary actions after deletion
     } catch (error) {

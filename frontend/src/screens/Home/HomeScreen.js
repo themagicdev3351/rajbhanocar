@@ -3,18 +3,18 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 // Components
-import Product from '../components/Product'
+import Product from '../../components/Product'
 
 //Actions
-import { getProducts as listProducts } from '../redux/actions/productActions'
-import { setUserDeatils } from '../redux/actions/userAction'; 
+import { getProducts as listProducts } from '../../redux/actions/productActions'
+import { setUserDeatils } from '../../redux/actions/userAction';
 
 
 const HomeScreen = () => {
   const dispatch = useDispatch()
 
   const getProducts = useSelector(state => state.getProducts)
-  const { products, loading, error } = getProducts 
+  const { products, loading, error } = getProducts
 
   useEffect(() => {
     dispatch(listProducts())
@@ -39,7 +39,7 @@ const HomeScreen = () => {
               name={product.name}
               description={product.description}
               price={product.price}
-              imageUrl={`${process.env.REACT_APP_BACKEND_URL}${product.imageUrl.replace(/\\/g, '/')}`}
+              imageUrl={product.imageUrl}
               productId={product._id}
             />
           ))
