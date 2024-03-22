@@ -12,7 +12,7 @@
     "data:import": "node backend/seederScript"
   },
   "keywords": [],
-  "author": "Raj Savaliya",
+  "author": "Bhautik",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
