@@ -7,10 +7,9 @@
     "node": "18.x"
   },
   "scripts": {
-    "start": "nodemon backend/server.js",
+    "start": "node backend/server.js",
     "dev": "nodemon backend/server.js",
-    "data:import": "node backend/seederScript",
-    "build": "echo ecom-back"
+    "data:import": "node backend/seederScript"
   },
   "keywords": [],
   "author": "Raj Savaliya",
