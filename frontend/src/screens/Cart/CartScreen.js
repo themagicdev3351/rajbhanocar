@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 // Components
-import CartItem from "../components/CartItem";
+import CartItem from "../../components/CartItem";
 
 // Actions
-import { addToCart, removeFromCart } from "../redux/actions/cartActions";
-import useLogin from "../utils/hooks/useLogin";
+import { addToCart, removeFromCart } from "../../redux/actions/cartActions";
+import useLogin from "../../utils/hooks/useLogin";
 
 const CartScreen = () => {
   const dispatch = useDispatch();

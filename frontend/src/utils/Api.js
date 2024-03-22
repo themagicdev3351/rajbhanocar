@@ -10,7 +10,7 @@ const getRequest = async (path) => {
         Authorization: "Bearer " + getToken(),
       },
     };
-    const res = await fetch(config.baseURL + path, params); 
+    const res = await fetch(config.baseURL + path, params);
     const data = await res.text();
     return { statusCode: res.status, data };
   } catch (e) {

@@ -1,9 +1,9 @@
-import * as actionTypes from '../constants/cartConstants' 
-import {Api} from '../../utils/Api'
-import {convertToCartData} from '../../utils/utils.function'
+import * as actionTypes from '../constants/cartConstants'
+import { Api } from '../../utils/Api'
+import { convertToCartData } from '../../utils/utils.function'
 
 export const addToCart = (id, qty) => async dispatch => {
-  const {data} = await Api.getRequest(`/api/products/${id}`)
+  const { data } = await Api.getRequest(`/api/products/${id}`)
   const product = JSON.parse(data)
   // console.log(product)
   dispatch({
@@ -11,31 +11,31 @@ export const addToCart = (id, qty) => async dispatch => {
     payload: {
       product: product._id,
       name: product.name,
-      imageUrl: product.imageUrl,
+      imageUrl: `${process.env.REACT_APP_BACKEND_URL}${product.imageUrl.replace(/\\/g, '/')}`,
       price: product.price,
       countInStock: product.countInStock,
       qty,
     },
   })
 
-  Api.postRequest('/api/cart', {productId: id, count: qty})
+  Api.postRequest('/api/cart', { productId: id, count: qty })
 }
 
 export const removeFromCart =
-  ({pId, _id}) =>
-  dispatch => {
-    dispatch({
-      type: actionTypes.REMOVE_FROM_CART,
-      payload: pId,
-    })
-    Api.DeleteRequest('/api/cart/' + _id)
-  }
+  ({ pId, _id }) =>
+    dispatch => {
+      dispatch({
+        type: actionTypes.REMOVE_FROM_CART,
+        payload: pId,
+      })
+      Api.DeleteRequest('/api/cart/' + _id)
+    }
 
 export const fetchCart = () => async dispatch => {
   try {
-    const {data: strigifyData} = await Api.getRequest(`/api/cart/`)
+    const { data: strigifyData } = await Api.getRequest(`/api/cart/`)
     // console.log({strigifyData})
-    const {carts} = JSON.parse(strigifyData)
+    const { carts } = JSON.parse(strigifyData)
     // console.log(carts)
 
     dispatch({

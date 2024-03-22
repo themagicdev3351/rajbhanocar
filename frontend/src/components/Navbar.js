@@ -25,55 +25,52 @@ const Navbar = ({ click }) => {
   }
 
   return (
-    <nav className="navbar">
-      <div className="navbar__logo">
-        <Link to="/">
-          <h2>E-COMERCE</h2>
-        </Link>
-      </div>
-
-      <ul className="navbar__links">
-        <li>
-          <Link to="/cart" className="cart__link">
-            <i className="fas fa-shopping-cart"></i>
-            <span>
-              Cart <span className="cartlogo__badge">{getCartCount()}</span>
-            </span>
+    <nav className="navbar py-3">
+      <div className='container'>
+        <div className="navbar__logo">
+          <Link to="/">
+            <h2>E-COMERCE</h2>
           </Link>
-        </li>
+        </div>
 
-        <li>
-          <Link to="/">Shop</Link>
-        </li>
-        {/* <li>
-          <Link to="/service">Service</Link>
-        </li> */}
+        <ul className="navbar__links">
 
-        {!user.userInfo.isLogin ? (
-          <>
-            <li>
-              <Link to="/signin">Login</Link>
-            </li>
-          </>
-        ) : (
-          <>
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-            <li>
-              <Link to="/addcar">add car</Link>
-            </li>
-            <li>
-              <p onClick={_handleLogout}>Logout</p>
-            </li>
-          </>
-        )}
-      </ul>
+          {!user.userInfo.isLogin ? (
+            <>
+              <li>
+                <Link to="/signin">Login</Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/cart" className="cart__link">
+                  <i className="fas fa-shopping-cart"></i>
+                  <span>
+                    Cart <span className="cartlogo__badge">{getCartCount()}</span>
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/addcar">add car</Link>
+              </li>
+              <li>
+                <p onClick={_handleLogout}>Logout</p>
+              </li>
+              <li>
+                <Link to="/profile" className="cart__link">
+                  <span className="cartlogo__badge" style={{ margin: '0' }}>{user.userInfo.details.fullName}</span>
+                </Link>
+              </li>
+            </>
+          )}
+        </ul>
 
-      <div className="hamburger__menu" onClick={click}>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div className="hamburger__menu" onClick={click}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
     </nav>
   )
